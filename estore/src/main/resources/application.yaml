@@ -1,0 +1,87 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "EStore"
+  description: "swagger store"
+tags:
+  - name: user_methods
+paths:
+  /users/{id}:
+    get:
+      tags:
+        - user_methods
+      summary: "Get user by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+    post:
+      tags:
+        - user_methods
+      summary: "Create new user"
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '201':
+          description: "User created"
+          schema:
+            $ref: "#/definitions/User"
+    put:
+      tags:
+        - user_methods
+      summary: "Update user by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: "User updated"
+          schema:
+            $ref: "#/definitions/User"
+    delete:
+      tags:
+        - user_methods
+      summary: "Delete user by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: "User deleted"
+
+  /products:
+    get:
+      tags:
+        - product_methods
+      summary: "Get all products"
+      responses:
+        '200':
+          description: "Successful operation"
+
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
